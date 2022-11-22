@@ -1,0 +1,220 @@
+<Home>:
+	BackBox:
+		orientation: "vertical"
+		size_hint_x: .2
+		bcolor: app.colors.white
+		radius: [self.height*.06, 0, 0, self.height*.06]
+		padding: [dp(12), dp(42), dp(12), dp(12)]
+		spacing: dp(12)
+		Text:
+			text: "Shared with me"
+			size_hint_y: None
+			height: dp(24)
+			font_size: app.fonts.size.h5
+			color: app.colors.grey_dark
+		BoxLayout:
+			ScrollView:
+				do_scroll: [False, True]
+				size_hint_y: None
+				height: self.parent.height
+				bar_inactive_color: [0,0,0,0]
+				bar_active_color: [0,0,0,0]
+				GridLayout:
+					id: gl_shared
+					cols: 1
+					size_hint_y: None
+					height: self.minimum_height
+					spacing: dp(12)
+	BackBox:
+		size_hint_x: .6
+		orientation: 'vertical'
+		spacing: dp(16)
+		padding: [dp(18), dp(16), dp(18), dp(2)]
+		bcolor: app.colors.grey_light
+		BackBox:
+			bcolor: app.colors.white
+			size_hint_y: None
+			height: dp(42)
+			radius: [dp(10)]
+			padding: [dp(12), dp(4)]
+			Text:
+				text: icon("icon-search")
+				color: app.colors.grey_dark
+				size_hint_x: None
+				width: self.height
+			EmptyField:
+				id: ti_search
+				hint_text: "Search for files"
+		BackBox:
+			size_hint_y: .3
+			orientation: "vertical"
+			spacing: dp(4)
+			Text:
+				text: "Clouds"
+				font_name: app.fonts.heading
+				font_size: app.fonts.size.h3
+				size_hint_y: None
+				height: dp(26)
+			BoxLayout:
+				ScrollView:
+					do_scroll: [True, False]
+					size_hint: [None, None]
+					size: self.parent.size
+					bar_inactive_color: [0,0,0,0]
+					bar_active_color: [0,0,0,0]
+					GridLayout:
+						id: gl_clouds
+						rows: 1
+						size_hint: [None, None]
+						size: self.minimum_size
+						spacing: dp(16)
+		BackBox:
+			size_hint_y: .35
+			orientation: 'vertical'
+			Text:
+				text: "Quick Access"
+				font_name: app.fonts.heading
+				font_size: app.fonts.size.h3
+				size_hint_y: None
+				height: dp(26)
+			BoxLayout:
+				ScrollView:
+					do_scroll: [True, False]
+					size_hint: [None, None]
+					size: self.parent.size
+					bar_inactive_color: [0,0,0,0]
+					bar_active_color: [0,0,0,0]
+					GridLayout:
+						id: gl_quick
+						rows: 1
+						size_hint: [None, None]
+						size: self.minimum_size
+						spacing: dp(16)
+		BackBox:
+			size_hint_y: .35
+			orientation: 'vertical'
+			spacing: dp(12)
+			Text:
+				text: "Recent Uploads"
+				font_name: app.fonts.heading
+				font_size: app.fonts.size.h3
+				size_hint_y: None
+				height: dp(26)
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					size_hint_y: None
+					height: dp(42)
+					spacing: dp(12)
+					Text: 
+						text: "Name"
+						font_name: app.fonts.body
+						font_size: app.fonts.size.h6
+						color: app.colors.black
+						size_hint_x: .4
+					Text: 
+						text: "File Type"
+						font_name: app.fonts.body
+						font_size: app.fonts.size.h6
+						color: app.colors.black
+						size_hint_x: .3
+					Text: 
+						text: "Last Modified"
+						font_name: app.fonts.body
+						font_size: app.fonts.size.h6
+						color: app.colors.black
+						size_hint_x: .3
+				BoxLayout:
+					ScrollView:
+						do_scroll: [False, True]
+						size_hint_y: None
+						height: self.parent.height
+						bar_inactive_color: [0,0,0,0]
+						bar_active_color: [0,0,0,0]
+						GridLayout:
+							id: gl_recent
+							cols: 1
+							size_hint_y: None
+							height: self.minimum_height
+							spacing: dp(16)
+	BackBox:
+		size_hint_x: .2
+		bcolor: app.colors.white
+		padding: [dp(14), dp(8), dp(14), dp(16)]
+		orientation: 'vertical'
+		BoxLayout:
+			size_hint_y: None
+			height: dp(42)
+			spacing: dp(24)
+			Widget:
+			FlatButton:
+				text: icon("icon-bell")
+				font_size: app.fonts.size.h3
+				color: [0,0,0, 1]
+				size_hint_x: None
+				width: self.height
+			CircleAvatar:
+				id: user_avatar
+				source: "assets/imgs/avatar.jpg"
+				size_hint_x: None
+				width: self.height
+		Widget:
+			size_hint_y: None
+			height: dp(42)
+		BackBox:
+			size_hint_y: None
+			height: self.width
+			RelativeLayout:
+				id: rl
+				ArcProgress:
+					id: arc
+					arc_max: 1024
+					arc_width: dp(24)
+				BoxLayout:
+					orientation: 'vertical'
+					Text:
+						text: "0.89[sub][color=#cacaca]TB[/color][/sub]"
+						markup: True
+						font_name: app.fonts.heading
+						font_size: app.fonts.size.h1
+						valign: 'bottom'
+						halign: 'center'
+						size_hint_y: .4
+					Text:
+						text: "FREE"
+						markup: True
+						font_name: app.fonts.body
+						font_size: app.fonts.size.h6
+						color: app.colors.primary
+						valign: 'top'
+						halign: 'center'
+						size_hint_y: .6
+		RelativeLayout:
+			size_hint_y: .3
+			BoxLayout:
+				# pos_hint: {'y': .2}
+				size_hint_y: None
+				height: root.height*.28
+				ScrollView:
+					do_scroll: [False, True]
+					bar_active_color: [0,0,0,0]
+					bar_inactive_color: [0,0,0,0]
+					size_hint_y: None
+					height: self.parent.height
+					GridLayout:
+						id: gl_used
+						cols: 1
+						spacing: dp(12)
+						size_hint_y: None
+						height: self.minimum_height
+		BoxLayout:
+			size_hint_y: .7
+			PremiumCard:
+				id: pc
+				title: "Discover Premium"
+				desc: "We’ve got even more features for you. Check them out and cancel anytime. You don’t need to commit"
+				bcolor: app.colors.secondary
+				cta_color: app.colors.tertiary
+				radius: [self.height*.07]
+
+	

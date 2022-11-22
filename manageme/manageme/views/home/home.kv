@@ -1,0 +1,648 @@
+#: import SoftBox widgets.gradient.SoftBox
+
+<Home>:
+	ShadowBox:
+		size_hint_x: .2
+		padding: dp(12)
+		orientation: "vertical"
+		Text:
+			text: "ManageMe"
+			color: app.colors.primary
+			font_name: app.fonts.heading
+			font_size: app.fonts.size.h1
+			halign: 'center'
+			size_hint_y: None
+			height: dp(96)
+		GridLayout:
+			cols: 1
+			spacing: dp(12)
+			size_hint_y: .6
+			canvas.before:
+				Color:
+					rgba: app.colors.grey_dark
+				Rectangle:
+					size: [self.size[0],dp(1)]
+					pos: self.pos
+			NavToggle:
+				text: "Dashboard"
+				icon: icon("icon-grid")
+				state: 'down'
+			NavToggle:
+				text: "Project"
+				icon: icon("icon-briefcase")
+			NavToggle:
+				text: "Task"
+				icon: icon("icon-check-square")
+			NavToggle:
+				text: "Schedule"
+				icon: icon("icon-calendar")
+			NavToggle:
+				text: "Contact"
+				icon: icon("icon-user")
+		GridLayout:
+			cols: 1
+			spacing: dp(12)
+			size_hint_y: .4
+			BoxLayout:
+				size_hint_y: None
+				height: dp(24)
+				padding: [dp(48), dp(0), dp(8), dp(0)]
+				Text: 
+					text: "Pinned Projects"
+					color: app.colors.grey_dark
+					font_name: app.fonts.subheading
+			NavProjectToggle:
+				text: "Web Design"
+				icon: icon("icon-edit-2")
+				circle_color: rgba("#B2CDFF")
+				icon_color: app.colors.tertiary
+			NavProjectToggle:
+				text: "Review Paper"
+				icon: icon("icon-file")
+				circle_color: rgba("#FEE9A6")
+				icon_color: app.colors.warning
+			NavProjectToggle:
+				text: "Music App"
+				icon: icon("icon-headphones")
+				circle_color: rgba("#FFACD5")
+				icon_color: app.colors.danger
+	BackBox:
+		size_hint_x: .8
+		padding: dp(12)
+		bcolor: app.colors.grey_light
+		orientation: "vertical"
+		spacing: dp(12)
+		AnchorLayout:
+			size_hint_y: None
+			height: dp(72)
+			BackBox:
+				spacing: dp(12)
+				size_hint_y: None
+				height: dp(42)
+				Widget:
+				BoxLayout:
+					spacing: dp(12)
+					ShadowBox:
+						elevation: 5
+						radius: [self.height*.5]
+						Text:
+							text: icon("icon-search")
+							color: app.colors.grey_dark
+							size_hint_x: None
+							width: self.height
+							halign: "center"
+							font_size: app.fonts.size.h3
+						TextInput:
+							id: searchbar
+							background_normal: ""
+							background_active: ""
+							background_doisabled: ""
+							background_color: [0,0,0,0]
+							foreground_color: app.colors.primary
+							hint_text: "Search"
+							font_size: app.fonts.size.h5
+							padding: [dp(8), (self.height - self.line_height)/2]
+					BoxLayout:
+						Widget:
+						FlatButton:
+							text: icon("icon-message-circle")
+							color: app.colors.primary
+							font_size: app.fonts.size.h1
+						FlatButton:
+							text: icon("icon-bell")
+							color: app.colors.primary
+							font_size: app.fonts.size.h1
+						AnchorLayout:
+							BoxLayout:
+								padding: dp(2)
+								size_hint_x: None
+								width: self.height
+								canvas.before:
+									Color:
+										rgba: app.colors.tertiary
+									Ellipse:
+										pos: self.pos
+										size: self.size
+								Widget:
+									canvas.before:
+										Color:
+											rgba: [1,1,1,1]
+										Ellipse:
+											pos: self.pos
+											size: self.size
+											source: "assets/imgs/avatar.jpg"
+		BackBox:
+			size_hint_y: .9
+			spacing: dp(12)
+			BackBox:
+				size_hint_x: .76
+				orientation: "vertical"
+				BoxLayout:
+					size_hint_y: None
+					height: dp(96)
+					spacing: dp(12)
+					padding: [dp(12), 0]
+					StatsBox:
+						bcolor: app.colors.tertiary
+						count: 73
+						icon: icon("icon-folder")
+						title: "Total Projects & Tasks"
+					StatsBox:
+						bcolor: app.colors.danger
+						count: 13
+						icon: icon("icon-clock")
+						title: "Deadline"
+					StatsBox:
+						bcolor: app.colors.warning
+						count: 10
+						icon: icon("icon-edit")
+						title: "In Progress"
+					StatsBox:
+						bcolor: app.colors.success
+						count: 50
+						icon: icon("icon-check-circle")
+						title: "Complete"
+				BoxLayout:
+					spacing: dp(18)
+					padding: dp(16)
+					ShadowBox:
+						radius: [self.height*.03]
+						elevation: 2
+						padding: dp(12)
+						orientation: 'vertical'
+						spacing: dp(8)
+						BoxLayout:
+							size_hint_y: None
+							height: dp(32)
+							Text:
+								text: "Projects"
+								color: app.colors.primary
+								font_size: app.fonts.size.h3
+								font_name: app.fonts.heading
+							FlatButton:
+								text: icon("icon-plus")
+								size_hint_x: None
+								width: self.height
+								color: app.colors.white
+								canvas.before:
+									Color:
+										rgba: app.colors.primary
+									Ellipse:
+										size: self.size[0], self.size[1]
+										pos: self.pos
+						BoxLayout:
+							size_hint_y: None
+							height: dp(24)
+							Text:
+								text: "Recently viewed"
+								color: app.colors.primary
+								font_size: app.fonts.size.h5
+								font_name: app.fonts.heading
+								opacity: .7
+						GridLayout:
+							id: gl_viewed
+							cols: 1
+							spacing: dp(8)
+						BoxLayout:
+							size_hint_y: None
+							height: dp(24)
+							Text:
+								text: "In progress"
+								color: app.colors.primary
+								font_size: app.fonts.size.h5
+								font_name: app.fonts.heading
+								opacity: .7
+						GridLayout:
+							id: gl_progress
+							cols: 1
+							spacing: dp(8)
+					BoxLayout:
+						spacing: dp(18)
+						orientation: 'vertical'
+						ShadowBox:
+							radius: [self.height*.03]
+							elevation: 2
+							padding: dp(16)
+							orientation: 'vertical'
+							BoxLayout:
+								size_hint_y: None
+								height: dp(32)
+								Text:
+									text: "Deadline"
+									color: app.colors.danger
+									font_size: app.fonts.size.h3
+									font_name: app.fonts.heading
+							BoxLayout:
+								orientation: 'vertical'
+								spacing: dp(12)
+								ShadowBox:
+									bcolor: app.colors.danger
+									radius: [self.height*.1]
+									padding: [dp(12), dp(4)]
+									Text:
+										text: 'Write essay'
+										color: app.colors.white
+										font_size: app.fonts.size.h5
+									Text:
+										text: icon("icon-clock")
+										halign: 'center'
+										size_hint_x: None
+										width: self.height -dp(8)
+										color: app.colors.white
+									Text:
+										text: "5h"
+										halign: 'center'
+										font_size: app.fonts.size.h6
+										size_hint_x: None
+										width: self.height -dp(8)
+										color: app.colors.white
+								ShadowBox:
+									radius: [self.height*.1]
+									padding: [dp(12), dp(4)]
+									Text:
+										text: 'Review Book'
+										color: app.colors.primary
+										font_size: app.fonts.size.h5
+									Text:
+										text: icon("icon-clock")
+										halign: 'center'
+										size_hint_x: None
+										width: self.height -dp(8)
+										color: app.colors.primary
+									Text:
+										text: "12h"
+										halign: 'center'
+										font_size: app.fonts.size.h6
+										size_hint_x: None
+										width: self.height -dp(8)
+										color: app.colors.primary
+								ShadowBox:
+									radius: [self.height*.1]
+									padding: [dp(12), dp(4)]
+									Text:
+										text: 'Review Paper'
+										color: app.colors.primary
+										font_size: app.fonts.size.h5
+									Text:
+										text: icon("icon-clock")
+										halign: 'center'
+										size_hint_x: None
+										width: self.height -dp(8)
+										color: app.colors.primary
+									Text:
+										text: "15h"
+										halign: 'center'
+										font_size: app.fonts.size.h6
+										size_hint_x: None
+										width: self.height -dp(8)
+										color: app.colors.primary
+									
+						ShadowBox:
+							radius: [self.height*.03]
+							elevation: 2
+							orientation: 'vertical'
+							padding: dp(16)
+							BoxLayout:
+								size_hint_y: None
+								height: dp(32)
+								Text:
+									text: "Task"
+									color: app.colors.primary
+									font_size: app.fonts.size.h3
+									font_name: app.fonts.heading
+								FlatButton:
+									text: icon("icon-plus")
+									size_hint_x: None
+									width: self.height
+									color: app.colors.white
+									canvas.before:
+										Color:
+											rgba: app.colors.primary
+										Ellipse:
+											size: self.size[0], self.size[1]
+											pos: self.pos
+							BoxLayout:
+								ScrollView:
+									do_scroll: [False, True]
+									size_hint_y: None
+									height: self.parent.height
+									GridLayout:
+										id: gl_tasks
+										cols: 1
+										spacing: dp(8)
+										size_hint_y: None
+										height: self.minimum_height
+			BackBox:
+				size_hint_x: .24
+				orientation: 'vertical'
+				spacing: dp(16)
+				BoxLayout:
+					size_hint_y: None
+					height: dp(96)
+					spacing: dp(12)
+					BackBox:	
+						bcolor: app.colors.primary
+						radius: [self.height*.15]
+						SoftBox:
+							radius: [self.height*.15]
+							bcolor: [app.colors.primary, app.colors.tertiary]
+							orientation: 'vertical'
+							padding: [dp(12), dp(4), dp(12), dp(16)]
+							Text:
+								text: "Friday, 22 February 2022"
+								color: app.colors.white
+								font_size: app.fonts.size.h5
+								font_name: app.fonts.body
+								valign: "bottom"
+							Text:
+								text: root.current_time
+								color: app.colors.white
+								font_size: app.fonts.size.h2
+								font_name: app.fonts.heading
+				BoxLayout:
+					orientation: "vertical"
+					spacing: dp(18)
+					ShadowBox:
+						radius: [self.height*.08]
+						MiniCalender:
+							id: cal
+					ShadowBox:
+						radius: [self.height*.08]
+						orientation: "vertical"
+						spacing: dp(8)
+						padding: dp(12)
+						BoxLayout:
+							size_hint_y: None
+							height: dp(32)
+							Text:
+								text: "Today Schedule"
+								color: app.colors.primary
+								font_size: app.fonts.size.h5
+								font_name: app.fonts.heading
+								opacity: .7
+							AnchorLayout:
+								size_hint_x: None
+								width: self.height
+								padding: dp(4)
+								FlatButton:
+									text: icon("icon-plus")
+									color: app.colors.white
+									canvas.before:
+										Color:
+											rgba: app.colors.primary
+										Ellipse:
+											size: self.size[0], self.size[1]
+											pos: self.pos
+						BoxLayout:
+							ScrollView:
+								do_scroll: [False, True]
+								size_hint_y: None
+								height: self.parent.height
+								GridLayout:
+									id: schedules
+									cols: 1
+									spacing: dp(8)
+									size_hint_y: None
+									height: self.minimum_height
+<Schedule>:
+	size_hint_y: None
+	height: dp(54)
+	padding: dp(2)
+	ShadowBox:
+		radius: [self.height*.03]
+		padding: dp(4)
+		spacing: dp(8)
+		orientation: 'vertical'
+		BoxLayout:
+			spacing: dp(4)
+			size_hint_y: .55
+			Text:
+				text: root.title
+				color: app.colors.black
+				font_name: app.fonts.heading
+				font_size: app.fonts.size.h6
+				size_hint_x: .55
+			Text:
+				text: root.time_range
+				color: app.colors.black
+				font_name: app.fonts.body
+				font_size: app.fonts.size.h6
+				halign: 'right'
+				size_hint_x: .45
+		BoxLayout:
+			spacing: dp(4)
+			size_hint_y: .45
+			Text:
+				text: root.desc
+				color: app.colors.grey_dark
+				font_name: app.fonts.body
+				font_size: app.fonts.size.h6
+				size_hint_x: .55
+			AnchorLayout:
+				padding: dp(2)
+				size_hint_x: None
+				width: self.height
+				Widget:
+					canvas.after:
+						Color:
+							rgba: root.color
+						Ellipse:
+							size: self.size[0], self.size[1]
+							pos: self.pos
+					
+<ProjectBox>:
+	ShadowBox:
+		radius: [self.height*.03]
+		padding: dp(8)
+		spacing: dp(8)
+		orientation: 'vertical'
+		BoxLayout:
+			spacing: dp(12)
+			size_hint_y: 55
+			BackBox:
+				id: icon_back
+				size_hint_x: None
+				width: self.height
+				radius: [self.height]
+				Text:
+					text: icon("icon-%s"%root.icon) if root.icon != "" else ""
+					font_size: app.fonts.size.h1
+					color: root.icon_color
+					halign: "center"
+			BoxLayout:
+				orientation: 'vertical'
+				Text:
+					text: root.title
+					font_size: app.fonts.size.h4
+					color: app.colors.primary
+					font_name: app.fonts.heading
+				Text:
+					text: root.subtitle
+					font_size: app.fonts.size.h5
+					color: app.colors.grey_dark
+			FlatButton:
+				text: icon("icon-more-vertical")
+				color: app.colors.grey_dark
+				size_hint_x: None
+				width: self.height
+
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: .45
+			BoxLayout:
+				Widget:
+					size_hint_y: None
+					size_hint_x: .9
+					height: dp(4)
+					canvas.before:
+						Color:
+							rgba: app.colors.grey_dark
+						RoundedRectangle:
+							pos: self.pos
+							size: self.size
+							radius: [dp(2)]
+						Color:
+							rgba: root.progress_color
+						RoundedRectangle:
+							pos: self.pos
+							size: [self.size[0]*(root.progress/100), self.size[1]]
+							radius: [dp(2)]
+				Text:
+					text: str(root.progress)
+					font_size: app.fonts.size.h6
+					color: app.colors.primary
+					halign: 'right'
+					size_hint_x: .1
+			BoxLayout:
+				BoxLayout:
+					id: users
+				BoxLayout:
+					Text:
+						text: str(root.start_date)
+						halign: 'right'
+						color: app.colors.danger
+						font_size: app.fonts.size.h6
+<Task>:
+	size_hint_y: None
+	height: dp(32)
+	canvas.before:
+		Color:
+			rgba: app.colors.grey_light
+		Rectangle:
+			pos: self.pos
+			size: [self.size[0], dp(1)]
+	FlatButton:
+		text: icon("icon-check-square")
+		size_hint_x: None
+		width: self.height
+		font_size: app.fonts.size.h1
+		color: app.colors.success if root.complete else app.colors.grey_dark
+	Text:
+		text: root.title
+		color: app.colors.primary
+		font_size: app.fonts.size.h5
+<StatsBox@BoxLayout>:
+	title: ""
+	icon: ""
+	count: 0
+	bcolor: [1,1,1,1]
+	orientation: 'vertical'
+	spacing: dp(8)
+	padding: dp(8)
+	canvas:
+		Color:
+			rgba: self.bcolor
+		RoundedRectangle:
+			size: self.size[0], self.size[1]
+			pos: self.pos
+			radius: [self.height*.1]
+	BoxLayout:
+		Text:
+			text: str(root.count)
+			font_size: app.fonts.size.h1
+			color: app.colors.white
+			font_name: app.fonts.heading
+		Text:
+			text: root.icon
+			font_size: app.fonts.size.h1
+			color: app.colors.white
+			halign: "right"
+	BoxLayout:
+		Text:
+			text: root.title
+			font_size: app.fonts.size.h5
+			color: app.colors.white
+			font_name: app.fonts.body
+
+<NavProjectToggle@ToggleButtonBehavior+BoxLayout>:
+	text: ""
+	icon: ""
+	size_hint_y: None
+	height: dp(42)
+	spacing: dp(12)
+	circle_color: [0,0,0,0]
+	icon_color: app.colors.primary
+	group: "nav-tabs"
+	AnchorLayout:
+		size_hint_x: None
+		width: self.height*1.8
+		padding: dp(4)
+		anchor_x: "right"
+		BoxLayout:
+			padding: dp(4)
+			size_hint_x: None
+			width: self.height
+			canvas:
+				Color:
+					rgba: root.circle_color
+				Ellipse:
+					size: self.size[0], self.size[1]
+					pos: self.pos
+			Text:
+				text: root.icon
+				color:  root.icon_color
+				halign: "center"
+	Text:
+		text: root.text
+		color: app.colors.primary if root.state == "down" else app.colors.grey_dark
+		font_name: app.fonts.heading if root.state == "down" else app.fonts.subheading
+	
+<NavToggle@ToggleButtonBehavior+BoxLayout>:
+	text: ""
+	icon: ""
+	size_hint_y: None
+	height: dp(42)
+	spacing: dp(12)
+	circle_color: [0,0,0,0]
+	icon_color: app.colors.primary
+	group: "nav-tabs"
+	canvas.before:
+		Color:
+			rgba: rgba("#CED9DB") if root.state == "down" else [0,0,0,0]
+		RoundedRectangle:
+			size: self.size[0], self.size[1]
+			pos: self.pos
+			radius: [dp(10)]
+	AnchorLayout:
+		size_hint_x: None
+		width: self.height*1.8
+		anchor_x: "right"
+		BoxLayout:
+			padding: dp(4)
+			size_hint_x: None
+			width: self.height
+			canvas:
+				Color:
+					rgba: root.circle_color
+				Ellipse:
+					size: self.size[0], self.size[1]
+					pos: self.pos
+			Text:
+				text: root.icon
+				color:  root.icon_color if root.state == "down" else app.colors.grey_dark
+				halign: "center"
+	Text:
+		text: root.text
+		color: app.colors.primary if root.state == "down" else app.colors.grey_dark
+		font_name: app.fonts.heading if root.state == "down" else app.fonts.subheading
+	

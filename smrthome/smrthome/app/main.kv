@@ -1,0 +1,117 @@
+
+#: import Home views.home.Home
+#: import Text widgets.labels.Text
+#: import Avatar widgets.avatar.Avatar
+#: import icon kivy.garden.iconfonts.icon
+#: import FlatButton widgets.buttons.FlatButton
+#: import ShadowBox widgets.shadow.ShadowBox
+#: import BackBox widgets.box.BackBox
+#: import SmoothSlider widgets.sliders.SmoothSlider
+#: import CircularDialer widgets.dialer.CircularDialer
+#: import Graph kivy.garden.graph.Graph
+
+<MainWindow>:
+    orientation: 'vertical'
+    spacing: dp(10)
+    canvas.before:
+        Color:
+            rgba: app.colors.bg
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        size_hint_y: None
+        height: dp(42)
+        spacing: dp(8)
+        padding: [dp(10), dp(16), dp(24), 0]
+        RelativeLayout:
+            AnchorLayout:
+                size_hint_x: .3
+                anchor_y: 'top'
+                anchor_x: "left"
+                Widget:
+                    id: logo
+                    size_hint: [None, None]
+                    height: dp(96)
+                    width: self.height
+                    canvas:
+                        Color:
+                            rgba: [1,1,1,1]
+                        Rectangle:
+                            size: self.size[0], self.size[1]
+                            pos: self.pos
+                            source: "assets/icons/logo.png" 
+        BoxLayout:
+            size_hint_x: .7
+            spacing: dp(14)
+            Text:
+                text: "Hello, %s"%root.username
+                font_name: app.fonts.heading
+                font_size: app.fonts.size.h3
+                color: app.colors.white
+                halign: 'right'
+            Avatar:
+                id: user_pic
+                source: root.avatar
+                size_hint_x: None
+                width: self.height
+    BoxLayout:
+        padding: [0, dp(14), 0, dp(8)]
+        BoxLayout:
+            id: nav
+            size_hint_x: .1
+            orientation: 'vertical' 
+            Widget:
+                size_hint_y: None
+                height: dp(54)
+            GridLayout:
+                id: nav_items
+                cols: 1
+                NavTabs:
+                    text: 'Dashboard'
+                    state: "down"
+                NavTabs:
+                    text: 'Devices'
+                NavTabs:
+                    text: 'Security'
+                NavTabs:
+                    text: 'Users'
+                NavTabs:
+                    text: 'Weather'
+            BoxLayout:
+                size_hint_y: None
+                height: dp(54)
+                padding: [dp(16), dp(0), dp(16), dp(16)]
+                FlatButton:
+                    text: "Leave    %s"%icon("icon-log-out")  
+                    color: app.colors.white
+                    font_name: app.fonts.subheading
+                    font_size: app.fonts.size.h3
+                    halign: 'left'
+        ScreenManager:
+            id: scrn_mngr
+            size_hint_x: .9
+            Screen:
+                name: 'scrn_home'
+                Home:
+                    id: home
+
+<NavTabs>:
+    text: ""
+    size_hint_y: None
+    height: dp(54)
+    ShadowBox:
+        padding: dp(4)
+        radius: [0, self.height/2, self.height/2, 0]
+        elevation: 5 if root.active else 1
+        bcolor: app.colors.secondary if root.active else app.colors.bg
+        ToggleButton:
+            text: root.text
+            group: "nav-tabs"
+            state: root.state
+            background_normal: ""
+            background_down: ""
+            background_color: [0,0,0,0]
+            on_state: root.handle_state(self, self.state)
+            font_name: app.fonts.heading if root.active else app.fonts.body
+            color: app.colors.white if root.active else app.colors.tertiary_light

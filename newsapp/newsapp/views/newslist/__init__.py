@@ -1,0 +1,1 @@
+from .newslist import NewsList

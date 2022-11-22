@@ -1,0 +1,545 @@
+<Home>:
+	padding: dp(12)
+	spacing: dp(8)
+	BoxLayout:
+		orientation: 'vertical'
+		size_hint_x: .8
+		spacing: dp(18)
+		BackBox:
+			size_hint_y: None
+			height: dp(180)
+			spacing: dp(8)
+			orientation: 'vertical'
+			BackBox:
+				radius: [self.height/2]
+				bcolor: app.colors.white
+				size_hint_y: None
+				height: dp(42)
+				spacing: dp(12)
+				Text:
+					text: icon("icon-search")
+					color: app.colors.grey_dark
+					halign: "center"
+					size_hint_x: None
+					width: self.height
+				EmptyField:
+					hint_text: "Find a device"
+			Text:
+				text: "Devices"
+				font_size: app.fonts.size.h5
+				font_name: app.fonts.body
+				color: app.colors.primary
+				size_hint_y: None
+				height: dp(16)
+			BoxLayout:
+				spacing: dp(14)
+				padding: [dp(14), 0]
+				Device:
+					name: "AIR CON"
+					icon: icon("icon-wind")
+					on: True
+				Device:
+					name: "TV-01-LV"
+					icon: icon("icon-monitor")
+					on: True
+				Device:
+					name: "TV-01-LV"
+					icon: icon("icon-monitor")
+				Device:
+					name: "TV-02-BR01"
+					icon: icon("icon-monitor")
+				Device:
+					name: "TV-03-BR02"
+					icon: icon("icon-monitor")
+		BackBox:
+			bcolor: app.colors.grey_light
+			spacing: dp(14)
+			BackBox:
+				bcolor: app.colors.white
+				size_hint_x: .7
+				radius: [self.height*.1]
+				orientation: 'vertical'
+				spacing: dp(12)
+				padding: dp(12)
+				AnchorLayout:
+					size_hint_y: None
+					height: dp(18)
+					Text:
+						text: "Energy Saving"
+						font_name: app.fonts.body
+						font_size: app.fonts.size.h5
+						color: app.colors.primary
+						halign: 'center'
+				BarChart:
+					id: chart
+					show_yaxis: True
+					show_xaxis: False
+			BackBox:
+				bcolor: app.colors.white
+				size_hint_x: .3
+				radius: [self.height*.1]
+				padding: dp(24)
+				orientation: 'vertical'
+				AnchorLayout:
+					size_hint_y: None
+					height: dp(18)
+					Text:
+						text: "Air Conditioning"
+						font_name: app.fonts.body
+						font_size: app.fonts.size.h5
+						color: app.colors.primary
+						halign: 'center'
+				BoxLayout:
+					CircularProgress:
+						id: current_temp
+				BoxLayout:
+					size_hint_y: None
+					height: dp(42)
+					AnchorLayout:
+						anchor_x: 'left'
+						ShadowBox:
+							size_hint_x: None
+							width: self.height
+							radius: [self.height]
+							elevation: 5
+							FlatButton:
+								text: icon("icon-minus")
+								color: app.colors.primary
+								font_size: app.fonts.size.h1
+								on_release: current_temp.step(-4)
+					AnchorLayout:
+						anchor_x: 'right'
+						ShadowBox:
+							size_hint_x: None
+							width: self.height
+							radius: [self.height]
+							elevation: 5
+							FlatButton:
+								text: icon("icon-plus")
+								color: app.colors.secondary
+								font_size: app.fonts.size.h1
+								on_release: current_temp.step(4)
+		BackBox:
+			size_hint_y: None
+			height: dp(154)
+			spacing: dp(8)
+			orientation: 'vertical'
+			Text:
+				text: "House Mood"
+				font_size: app.fonts.size.h5
+				font_name: app.fonts.body
+				color: app.colors.primary
+				size_hint_y: None
+				height: dp(16)
+			BoxLayout:
+				spacing: dp(14)
+				Mood:
+					text: "25[sup]o[/sup]"
+					name: 'Temperature'
+				Mood:
+					text: "71[sup]%[/sup]"
+					name: 'Humidity'
+				BackBox:
+					vertical: True
+					orientation: 'vertical'
+					bcolor: app.colors.white
+					radius: [self.height*.2]
+					spacing: dp(12)
+					padding: dp(10)
+					AnchorLayout:
+						size_hint_y: None
+						height: dp(18)
+						Text:
+							text: "Auto Lights"
+							font_name: app.fonts.body
+							font_size: app.fonts.size.h5
+							color: app.colors.primary
+							halign: 'center'
+					BoxLayout:
+						orientation: 'vertical'
+						Text:
+							text: "From"
+							font_name: app.fonts.body
+							font_size: app.fonts.size.h6
+							color: app.colors.primary
+							halign: 'center'
+							size_hint_y: None
+							height: dp(18)
+						BoxLayout:
+							canvas.before:
+								Color:
+									rgba: app.colors.grey_light
+								RoundedRectangle:
+									size: self.size[0], self.size[1]
+									pos: self.pos
+									radius: [self.height/2]
+							EmptyField:
+								text: "06:30pm"
+						Text:
+							text: "To"
+							font_name: app.fonts.body
+							font_size: app.fonts.size.h6
+							color: app.colors.primary
+							halign: 'center'
+							size_hint_y: None
+							height: dp(18)
+						BoxLayout:
+							canvas.before:
+								Color:
+									rgba: app.colors.grey_light
+								RoundedRectangle:
+									size: self.size[0], self.size[1]
+									pos: self.pos
+									radius: [self.height/2]
+							EmptyField:
+								text: "07:15am"
+
+				Mood:
+					text: "65[sup]%[/sup]"
+					name: 'Light Strength'
+	BackBox:
+		orientation: 'vertical'
+		size_hint_x: .2
+		bcolor: app.colors.tertiary
+		spacing: dp(12)
+		padding: dp(12)
+		BoxLayout:
+			size_hint_y: None
+			height: dp(64)
+			spacing: dp(14)
+			Text:
+				text: "[font=%s]Hello,[/font] %s"%(app.fonts.heading, root.username)
+				font_size: app.fonts.size.h3
+				color: app.colors.secondary
+				font_name: app.fonts.subheading
+			Widget:
+				size_hint_x: None
+				width: self.height
+				canvas:
+					Color:
+						rgba: [1,1,1,1]
+					Ellipse:
+						size: self.size[0], self.size[1]
+						pos: self.pos
+						source: "assets/imgs/avatar.jpg"
+				
+		BoxLayout:
+			orientation: 'vertical'
+			spacing: dp(14)
+			GridLayout:
+				cols: 1
+				Text:
+					text: "At home"
+					font_size: app.fonts.size.h5
+					font_name: app.fonts.body
+					color: app.colors.primary
+					size_hint_y: None
+					height: dp(16)
+				BackBox:
+					radius: [self.height*.1]
+					GridLayout:
+						id: gl_users
+						cols: 4
+						padding: dp(12)
+						spacing: dp(12)
+			GridLayout:
+				cols: 1
+				Text:
+					text: "Weather"
+					font_size: app.fonts.size.h5
+					font_name: app.fonts.body
+					color: app.colors.primary
+					size_hint_y: None
+					height: dp(16)
+				SoftBox:
+					radius: [self.height*.1]
+					padding: dp(12)
+					spacing: dp(8)
+					bcolor: app.colors.gradient_opaque
+					vertical: True
+					BoxLayout:
+						size_hint_x: .6
+						orientation: 'vertical'
+						Text:
+							text: root.current_date
+							font_size: app.fonts.size.h6
+							font_name: app.fonts.body
+							color: app.colors.grey_dark
+							size_hint_y: None
+							height: dp(16)
+							halign: 'center'
+						Text:
+							text: root.weather_city
+							font_size: app.fonts.size.h5
+							font_name: app.fonts.subheading
+							color: app.colors.black
+							size_hint_y: None
+							height: dp(26)
+							halign: 'center'
+						Text:
+							text: "%s[sup]o[/sup]"%root.outdoor_temp
+							font_size: app.fonts.size.extra
+							font_name: app.fonts.heading
+							color: app.colors.primary
+							halign: 'center'
+					BoxLayout:
+						size_hint_x: .4
+						Text:
+							text: icon("icon-cloud")
+							font_size: sp(64)
+							color: app.colors.primary
+							halign: "center"
+							valign: "middle"
+			GridLayout:
+				cols: 1
+				Text:
+					text: "Live feed"
+					font_size: app.fonts.size.h5
+					font_name: app.fonts.body
+					color: app.colors.primary
+					size_hint_y: None
+					height: dp(16)
+				BoxLayout:
+					canvas.before:
+						Color:
+							rgba: [1,1,1,1]
+						RoundedRectangle:
+							size: self.size[0], self.size[1]
+							pos: self.pos
+							radius: [self.height*.1]
+							source: "assets/imgs/living-room.png"
+					AnchorLayout:
+						anchor_y: "top"
+						BoxLayout:
+							padding: dp(4)
+							spacing: dp(8)
+							size_hint_y: .3
+							canvas.before:
+								Color:
+									rgba: [0,0,0, .2]
+								RoundedRectangle:
+									size: self.size[0], self.size[1]
+									pos: self.pos
+									radius: [self.parent.height*.1, self.parent.height*.1, 0, 0]
+							AnchorLayout:
+								size_hint_x: None
+								width: self.height
+								padding: dp(4)
+								Widget:
+									canvas.after:
+										Color:
+											rgba: app.colors.danger
+										Ellipse:
+											size: self.size[0], self.size[1]
+											pos: self.pos
+							Text:
+								text: root.live_room
+								font_size: app.fonts.size.h5
+								font_name: app.fonts.subheading
+								color: app.colors.white
+							Text:
+								text: "FHD"
+								font_size: app.fonts.size.h5
+								font_name: app.fonts.heading
+								color: app.colors.white
+								size_hint_x: None
+								width: self.height + (self.height*.5)
+								
+					
+		GridLayout:
+			size_hint_y: None
+			height: dp(96)
+			spacing: dp(2)
+			cols: 1
+			Text:
+				text: "Media"
+				font_size: app.fonts.size.h5
+				font_name: app.fonts.body
+				color: app.colors.primary
+				size_hint_y: None
+				height: dp(16)
+			SoftBox:
+				radius: [self.height/2]
+				vertical: True
+				orientation: 'vertical'
+				bcolor: app.colors.gradient_invert
+				padding: dp(8)
+				Text:
+					text: root.current_song
+					font_size: app.fonts.size.h5
+					font_name: app.fonts.heading
+					color: app.colors.primary
+					size_hint_y: None
+					halign: "center"
+					height: dp(14)
+				Text:
+					text: root.song_album
+					font_size: app.fonts.size.h5
+					font_name: app.fonts.body
+					color: app.colors.primary
+					halign: "center"
+					size_hint_y: None
+					height: dp(14)
+				BoxLayout:
+					padding: [dp(12), 0]
+					FlatButton:
+						text: icon("icon-skip-back")
+						size_hint_x: None
+						width: self.height
+						color: app.colors.primary
+						font_size: app.fonts.size.h3
+					AnchorLayout:
+						ShadowBox:
+							size_hint_x: None
+							width: self.height
+							radius: [self.height]
+							elevation: 5
+							bcolor: app.colors.primary
+							padding: dp(4)
+							FlatButton:
+								text: icon("icon-play")
+								color: app.colors.white
+								font_size: app.fonts.size.h3
+					FlatButton:
+						text: icon("icon-skip-forward")
+						size_hint_x: None
+						width: self.height
+						color: app.colors.primary
+						font_size: app.fonts.size.h3
+
+
+<User>:
+	orientation: 'vertical'
+	Widget:
+		size_hint_y: None
+		height: self.width
+		canvas:
+			Color:
+				rgba: [1,1,1,1]
+			Ellipse:
+				size: self.size[0], self.size[1]
+				pos: self.pos
+				source: root.source
+	Text:
+		text: root.name
+		halign: 'center'
+		font_name: app.fonts.subheading
+		font_size: app.fonts.size.h6
+		
+<EmptyField@TextInput>:
+	background_color: [0,0,0,0]
+	foreground_active: app.colors.secondary
+	background_active: ""
+	background_normal: ""
+	padding: [dp(6), (self.height - self.line_height)/2]
+<CircularProgress>:
+	size_hint_x: None
+	width: self.height
+	ShadowBox:
+		radius: [self.height]
+		elevation: 5
+		padding: dp(8)
+		BackBox:
+			radius: [self.height]
+			bcolor: app.colors.tertiary
+			padding: dp(12)
+			canvas.before:
+				Color:
+					rgba: app.colors.grey_light
+				Line:
+					width: dp(1)
+					ellipse: [self.x, self.y, self.width, self.height, 0, 360]
+			BoxLayout:
+				padding: dp(12)
+				canvas.before:
+					Color:
+						rgba: app.colors.secondary
+					Line:
+						width: dp(12)
+						ellipse: [self.x, self.y, self.width, self.height, 0, (root.current_temp/40)*360]
+				ShadowBox:
+					radius: [self.height]
+					elevation: 5
+					Text:
+						text: "%s[sup]o[/sup]C"%str(root.current_temp)
+						font_size: app.fonts.size.h1
+						halign: 'center'
+						valign: 'middle'
+						color: app.colors.primary
+
+
+<Mood>:
+	BackBox:
+		vertical: True
+		orientation: 'vertical'
+		bcolor: app.colors.white
+		radius: [self.height*.2]
+		spacing: dp(12)
+		padding: dp(10)
+		AnchorLayout:
+			size_hint_y: None
+			height: dp(32)
+			Text:
+				text: root.name
+				font_name: app.fonts.body
+				font_size: app.fonts.size.h5
+				color: app.colors.primary
+				halign: 'center'
+		BoxLayout:
+			Text:
+				text: root.text
+				font_name: app.fonts.heading
+				font_size: app.fonts.size.extra
+				color: app.colors.primary
+				halign: 'center'
+<Device>:
+	SoftBox:
+		orientation: 'vertical'
+		vertical: True
+		bcolor: app.colors.gradient
+		radius: [self.height*.15]
+		padding: dp(16)
+		BoxLayout:
+			size_hint_y: None
+			height: dp(32)
+			spacing: dp(12)
+			AnchorLayout:
+				size_hint_x: None
+				width: self.height
+				canvas.before:
+					Color:
+						rgba: app.colors.tertiary
+					RoundedRectangle:
+						pos: self.pos
+						size: self.size
+						radius: [self.height*.2]
+				Text:
+					text: root.icon
+					color: app.colors.secondary if root.on else app.colors.grey_dark
+					font_size: app.fonts.size.h1
+					halign: "center"
+			Widget:
+			FlatToggle:
+				text: icon("icon-toggle-right") if root.on else icon("icon-toggle-left")
+				color: app.colors.secondary if root.on else app.colors.grey_dark
+				font_size: app.fonts.size.h1
+				halign: "right"
+				on_state: root.toggle_device()
+				size_hint_x: None
+				width: self.height + (self.height/2)
+		BoxLayout:
+			Text:
+				text: root.name
+				valign: 'bottom'
+				halign: 'center'
+				color: app.colors.secondary if root.on else app.colors.grey_dark
+				font_name: app.fonts.heading if root.on else app.fonts.body
+				font_size: app.fonts.size.h3
+
+<FlatToggle@ToggleButton>:
+	background_normal: ""
+	background_down: ""
+	background_color: [0,0,0,0]
+	markup: True
+
+	

@@ -1,0 +1,496 @@
+<Home>:
+	spacing: dp(16)
+	padding: [dp(16), dp(12), dp(12), dp(12)]
+	BoxLayout:
+		size_hint_x: .8
+		orientation: 'vertical'
+		spacing: dp(12)
+		BoxLayout:
+			size_hint_y: .6
+			spacing: dp(24)
+			BackBox:
+				size_hint_x: .3
+				radius: [self.height*.04]
+				bcolor: app.colors.tertiary
+				spacing: dp(12)
+				padding: dp(16)
+				orientation: 'vertical'
+				Text:
+					text: "Air Conditioning"
+					color: app.colors.white
+					font_size: app.fonts.size.h1
+					font_name: app.fonts.subheading
+					halign: 'center'
+					size_hint_y: None
+					height: dp(28)
+				AnchorLayout:
+					CircularDialer:
+						size_hint_x: None
+						width: self.height
+						dial_max: 60
+						dial_value: root.air_value
+				AnchorLayout:
+					anchor_y: "top"
+					size_hint_y: .1
+					SmoothSlider:
+						id: aircon_dial
+						min: 0
+						max: 60
+						value: 15
+						value_track_color: app.colors.tertiary_light
+						on_value: root.update_aircon(self.value)
+			BackBox:
+				size_hint_x: .3
+				radius: [self.height*.04]
+				bcolor: app.colors.tertiary
+				spacing: dp(12)
+				padding: dp(16)
+				orientation: 'vertical'
+				Text:
+					text: "Universal Lights"
+					color: app.colors.white
+					font_size: app.fonts.size.h1
+					font_name: app.fonts.subheading
+					halign: 'center'
+					size_hint_y: None
+					height: dp(28)
+				AnchorLayout:
+					CircularDialer:
+						size_hint_x: None
+						width: self.height
+						dial_max: 100
+						dial_value: root.light_value
+						dialer_source: "assets/imgs/dialer-02-active.png"
+				AnchorLayout:
+					anchor_y: "top"
+					size_hint_y: .1
+					SmoothSlider:
+						min: 0
+						max: 100
+						value: 75
+						value_track_color: app.colors.tertiary_light
+						on_value: root.update_lights(self.value)
+			BoxLayout:
+				size_hint_x: .4
+				spacing: dp(12)
+				orientation: 'vertical'
+				SoftBox:
+					size_hint_y: .6
+					bcolor: [rgba("#152331"), rgba("#000000")]
+					vertical: True
+					radius: [self.height*.1]
+					spacing: dp(12)
+					padding: dp(16)
+					orientation: 'vertical'
+					BoxLayout:
+						size_hint_y: None
+						height: dp(32)
+						Text:
+							text: "Energy Consumption"
+							color: app.colors.white
+							font_size: app.fonts.size.h4
+							font_name: app.fonts.subheading
+							size_hint_x: .7
+						Text:
+							text: "145Kw"
+							color: app.colors.white
+							font_size: app.fonts.size.h4
+							font_name: app.fonts.subheading
+							halign: 'right'
+							size_hint_x: .3
+					BoxLayout:
+						id: graph_wrapper
+						Graph:
+							id: graph
+							xmin: 0
+							xmax: len(root.chart_data)
+							ymin: 0
+							ymax: 80
+							draw_border: False
+				BackBox:
+					size_hint_y: .4
+					radius: [self.height*.1]
+					bcolor: app.colors.primary
+					spacing: dp(14)
+					BoxLayout:
+						size_hint_x: .3
+						ScrollView:
+							do_scroll: [False, True]
+							bar_inactive_color: [0,0,0,0]
+							bar_active_color: [0,0,0,0]
+							size_hint_y: None
+							height: self.parent.height
+							GridLayout:
+								id: gl_feed
+								cols: 1
+								size_hint_y: None
+								height: self.minimum_height
+					BoxLayout:
+						size_hint_x: .7
+						RelativeLayout:
+							Widget:
+								canvas.after:
+									Color:
+										rgba: [1,1,1,1]
+									RoundedRectangle:
+										size: self.size[0], self.size[1]
+										pos: self.pos
+										radius: [self.height*.1]
+										source: root.current_feed
+							AnchorLayout:
+								anchor_y: 'top'
+								BackBox:
+									radius: [0, self.height*.1, self.height*.1, 0]
+									bcolor: [0,0,0, .4]
+									size_hint_y: None
+									height: dp(42)
+									padding: dp(8)
+									spacing: dp(12)
+									AnchorLayout:
+										size_hint_x: None
+										width: self.height
+										padding: dp(8)
+										Widget:
+											size_hint_x: None
+											width: self.height
+											canvas.before:
+												Color:
+													rgba: app.colors.danger
+												Ellipse:
+													pos: self.pos
+													size: self.size
+									Text:
+										text: "Live Feed"
+										color: app.colors.danger
+										font_size: app.fonts.size.h3
+										font_name: app.fonts.subheading
+										size_hint_x: .7
+									Text:
+										text: "FHD"
+										color: app.colors.danger
+										font_size: app.fonts.size.h3
+										font_name: app.fonts.heading
+										halign: "right"
+										size_hint_x: .3
+								
+		BackBox:
+			size_hint_y: .4
+			padding: dp(1)
+			bcolor: app.colors.primary
+			radius: [self.height*.04]
+			BackBox:
+				bcolor: app.colors.bg
+				radius: [self.height*.04]
+				orientation: 'vertical'
+				BoxLayout:
+					size_hint_y: None
+					height: dp(42)
+					spacing: dp(12)
+					RoomTabs:
+						text: "LIVING ROOM"
+						state: "down"
+						on_state: root.update_room(self.text)
+					RoomTabs:
+						text: "DINING ROOM"
+						on_state: root.update_room(self.text)
+					RoomTabs:
+						text: "KITCHEN"
+						on_state: root.update_room(self.text)
+					RoomTabs:
+						text: "BEDROOM 01"
+						on_state: root.update_room(self.text)
+					RoomTabs:
+						text: "BEDROOM 02"
+						on_state: root.update_room(self.text)
+				BackBox:
+					bcolor: app.colors.primary
+					Room:
+						id: current_room
+						temperature: str(root.temperature)
+						lights: root.lights
+						curtains: root.curtains
+						devices: root.devices
+	BoxLayout:
+		orientation: 'vertical'
+		size_hint_x: .2
+		padding: dp(12)
+		spacing: dp(18)
+		canvas.before:
+			Color:
+				rgba: app.colors.primary
+			Rectangle:
+				size: dp(1), self.size[1]
+				pos: self.pos
+		
+		BoxLayout: 
+			size_hint_y: .4
+			orientation: 'vertical'
+			spacing: dp(10)
+			Text:
+				text: 'Quick Access'
+				font_name: app.fonts.subheading
+				color: app.colors.white
+				font_size: app.fonts.size.h3
+				size_hint_y: None
+				height: dp(22)
+			GridLayout:
+				cols: 2
+				spacing: dp(16)
+				QuickDevice:
+					text: "Speakers"
+					icon: icon("icon-headphones")
+				QuickDevice:
+					text: "TVs"
+					icon: icon("icon-monitor")
+				QuickDevice:
+					text: "Aircons"
+					icon: icon("icon-thermometer")
+				QuickDevice:
+					text: "Lights"
+					icon: icon("icon-sun")
+		BoxLayout: 
+			size_hint_y: .25
+			spacing: dp(10)
+			orientation: 'vertical'
+			Text:
+				text: 'Quick Access'
+				font_name: app.fonts.subheading
+				color: app.colors.white
+				font_size: app.fonts.size.h3
+				size_hint_y: None
+				height: dp(22)
+			BackBox:
+				radius: [self.height*.2]
+				bcolor: app.colors.primary
+				spacing: dp(12)
+				padding: dp(12)
+				Text:
+					text: icon("icon-cloud")
+					font_size: sp(64)
+					color: app.colors.white
+					halign: "center"
+					valign: "bottom"
+					size_hint_x: .4
+				BoxLayout:
+					size_hint_x: .6
+					orientation: "vertical"
+					BoxLayout:
+						orientation: "vertical"
+						spacing: dp(4)
+						Text:
+							text: "24[sup]o[/sup]"
+							font_size: app.fonts.size.h1
+							font_name: app.fonts.subheading
+							color: app.colors.white
+							halign: "right"
+						Text:
+							text: "Bulawayo, ZW"
+							font_size: app.fonts.size.h5
+							font_name: app.fonts.body
+							color: app.colors.white
+							halign: "right"
+							size_hint_y: None
+							height: dp(16)
+							# valign: "bottom"
+					BoxLayout:
+						Text:
+							text: "Wednesday 18 May 2022"
+							font_size: app.fonts.size.h6
+							color: app.colors.white
+							halign: "right"
+							valign: "bottom"
+		BoxLayout: 
+			size_hint_y: .35
+			orientation: 'vertical'
+			spacing: dp(10)
+			Text:
+				text: 'At home'
+				font_name: app.fonts.subheading
+				color: app.colors.white
+				font_size: app.fonts.size.h3
+				size_hint_y: None
+				height: dp(22)
+			BoxLayout:
+				ScrollView:
+					do_scroll: [False, True]
+					bar_inactive_color: [0,0,0,0]
+					bar_active_color: [0,0,0,0]
+					size_hint_y: None
+					height: self.parent.height
+					GridLayout:
+						id: gl_users
+						cols: 1
+						size_hint_y: None
+						height: self.minimum_height
+						spacing: dp(12)
+
+<User>:
+	size_hint_y: None
+	height: dp(24)
+	spacing: dp(10)
+	Avatar:
+		size_hint_x: None
+		width: self.height
+		source: root.source
+	Text:
+		text: root.text
+		color: app.colors.white
+		font_size: app.fonts.size.h4
+		font_name: app.fonts.body	
+
+<RoomTabs>:
+	background_normal: ""
+	background_down: ""
+	background_color: [0,0,0,0]
+	color: app.colors.white if self.state == "down" else app.colors.tertiary_light
+	font_name: app.fonts.heading if self.state == "down" else app.fonts.subheading
+	group: "room-tabs"
+	canvas.before:
+		Color:
+			rgba: app.colors.success if self.state == "down" else [0,0,0,0]
+		Rectangle:
+			size: [self.size[0]*.2, dp(4)]
+			pos: [self.pos[0]+((self.size[0]/2)-(self.size[0]*.1)), self.pos[1]]
+
+<FeedTab>:
+	size_hint_y: None
+	height: dp(42)
+	background_normal: ""
+	background_down: ""
+	background_color: [0,0,0,0]
+	color: app.colors.white if self.state == "down" else app.colors.tertiary_light
+	font_name: app.fonts.heading if self.state == "down" else app.fonts.subheading
+	group: "feed-tabs"
+
+<Room>:
+	padding: [dp(16), dp(4), dp(16), 0]
+	orientation: "vertical"
+	spacing: dp(8)
+	temperature: ""
+	lights: False
+	curtains: False
+	BackBox:
+		size_hint_y: .6
+		RoomStat:
+			text: "%s[sup]o[/sup]"%root.temperature
+			title: "Temperature"
+		RoomStat:
+			text: "ON" if root.lights else "OFF"
+			title: "Lights"
+		RoomStat:
+			text: "CLOSED" if root.curtains else "OPEN"
+			title: "Curtains"
+			show_border: False
+	BackBox:
+		size_hint_y: .4
+		orientation: "vertical"
+		Text:
+			text: "Devices"
+			size_hint_y: None
+			height: dp(18)
+			color: app.colors.white
+			font_name: app.fonts.subheading
+		BoxLayout:
+			ScrollView:
+				do_scroll: [True, False]
+				bar_active_color: [0,0,0,0]
+				bar_inactive_color: [0,0,0,0]
+				size_hint: [None, None]
+				size: self.parent.size
+				GridLayout:
+					id: gl_devices
+					spacing: dp(12)
+					rows: 1
+					size_hint: [None, None]
+					size: self.minimum_size
+
+<Device>:
+	size_hint: [None, None]
+	size: [dp(120), dp(64)]
+	spacing: dp(8)
+	orientation: "vertical"
+	padding: [0,0,0,dp(8)]
+	canvas.before:
+		Color:
+			rgba: app.colors.grey_light if self.show_border else [0,0,0,0]
+		Rectangle:
+			size: [dp(1), self.size[1]]
+			pos: [self.pos[0]+(self.size[0]-dp(1)), self.pos[1]]
+	Text:
+		text: root.text
+		size_hint_y: None
+		height: dp(18)
+		halign: "center"
+		color: app.colors.white
+		font_name: app.fonts.subheading
+		font_size: app.fonts.size.h5
+	FlatToggle:
+		text: icon("icon-toggle-right") if root.on else icon("icon-toggle-left")
+		color: app.colors.tertiary_light if root.on else app.colors.secondary
+		font_size: app.fonts.size.h1
+		halign: "center"
+		on_state: root.toggle_device()
+
+<FlatToggle@ToggleButton>:
+	background_normal: ""
+	background_down: ""
+	background_color: [0,0,0,0]
+	markup: True
+
+<RoomStat@BoxLayout>:
+	text: ""
+	title: ""
+	show_border: True
+	orientation: 'vertical'
+	padding: dp(8)
+	canvas.before:
+		Color:
+			rgba: app.colors.grey_light if self.show_border else [0,0,0,0]
+		Rectangle:
+			size: [dp(1), self.size[1]]
+			pos: [self.pos[0]+(self.size[0]-dp(1)), self.pos[1]]
+	Text:
+		text: root.text
+		font_size: app.fonts.size.extra
+		font_name: app.fonts.heading
+		halign: 'center'
+		color: app.colors.white
+	Text:
+		text: root.title
+		font_size: app.fonts.size.h4
+		font_name: app.fonts.body
+		halign: 'center'
+		color: app.colors.white
+		size_hint_y: None
+		height: dp(18)
+<QuickDevice>:
+	padding: dp(1)
+	canvas.before:
+		Color:
+			rgba: app.colors.grey_light
+		RoundedRectangle:
+			size: self.size[0], self.size[1]
+			pos: self.pos
+			radius: [self.height*.1]
+	BoxLayout:
+		padding: dp(12)
+		orientation: 'vertical'
+		canvas.before:
+			Color:
+				rgba: app.colors.primary
+			RoundedRectangle:
+				size: self.size[0], self.size[1]
+				pos: self.pos
+				radius: [self.height*.1]
+		Text:
+			text: root.icon
+			halign: "center"
+			color: app.colors.white
+			font_size: sp(32)
+		Text:
+			text: root.text
+			halign: "center"
+			color: app.colors.white
+			font_size: app.fonts.size.h5
+			size_hint_y: None
+			height: dp(16)

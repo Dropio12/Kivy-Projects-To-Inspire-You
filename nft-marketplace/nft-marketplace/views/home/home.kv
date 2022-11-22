@@ -1,0 +1,254 @@
+
+<Home>:
+	orientation: 'vertical'
+	padding: [dp(24), dp(8)]
+	spacing: dp(16)
+	BoxLayout:
+		size_hint_y: None
+		height: dp(32)
+		spacing: dp(16)
+		BackBox:
+			padding: [dp(8), dp(4)]
+			bcolor: app.color_white
+			radius: [self.height*.3]
+			Text:
+				text: icon("icon-search")
+				color: app.color_grey_dark
+				size_hint_x: None
+				width: self.height
+			FlatField:
+				id: ti_search
+				hint_text: "Search here"
+		ToggleButton:
+			text: icon("icon-maximize-2") if self.state == "normal" else icon("icon-minimize-2")
+			markup: True
+			font_size: app.fonts.size.h4
+			color: app.color_grey_dark
+			background_color: [0,0,0,0]
+			background_down: ""
+			background_normal: ""
+			size_hint_x: None
+			width: self.height
+			on_state: app.root.ids.nav.toggle_collapsible()
+	BoxLayout:
+		size_hint_y: .3
+		RelativeLayout:
+			BoxLayout:
+				orientation: 'vertical'
+				Widget:	
+					size_hint_y: None
+					height: dp(32)
+				SoftBox:
+					bcolor: [app.color_white, app.color_tertiary]
+					radius: [self.height*.07]
+					padding: dp(12)
+					orientation: 'vertical'
+					Text:
+						text: "Create your own NFT"
+						font_size: app.fonts.size.h1
+						color: app.color_black
+					Text:
+						text: "We make it super easy to create your own nfts and sell them. All of this in a single app"
+						font_size: app.fonts.size.h5
+						color: app.color_grey_dark
+						size_hint_y: None
+						height: dp(20)
+					Widget:
+					BoxLayout:
+						spacing: dp(16)
+						size_hint_x: .4
+						RoundedButton:
+							text: "Learn More"
+							color: app.color_white
+							bcolor: app.color_primary
+							radius: [self.height*.3]
+						FlatButton:
+							text: "Create NFT"
+							color: app.color_primary
+							canvas.before:
+								Color:
+									rgba: app.color_primary
+								Line:
+									rounded_rectangle: [self.pos[0], self.pos[1], self.size[0], self.size[1], self.height*.2]
+									width: dp(1)
+						Widget:
+			AnchorLayout:
+				anchor_x: "right"
+				Image:
+					size_hint_x: None
+					width: self.height
+					source: "assets/imgs/cover-1.png"
+					allow_stretch: True
+					keep_ratio: False
+	BoxLayout:
+		size_hint_y: .4
+		spacing: dp(12)
+		ScrollView:
+			do_scroll: [True, False]
+			bar_inactive_color: [0,0,0,0]
+			bar_active_color: [0,0,0,0]
+			size_hint: [None, None]
+			size: self.parent.size
+			GridLayout:
+				id: gl_nfts
+				rows: 1
+				size_hint: [None, None]
+				size: self.minimum_size
+				spacing: dp(12)
+	BoxLayout:
+		size_hint_y: .3
+		orientation: 'vertical'
+		spacing: dp(8)
+		Text:
+			text: "Trending NFTs"
+			size_hint_y: None
+			font_size: app.fonts.size.h3
+			height: dp(18)
+		BoxLayout:
+			orientation: "vertical"
+			BoxLayout:
+				size_hint_y: None
+				height: dp(18)
+				Text: 
+					text: "Collections"
+					color: app.color_grey_dark
+					size_hint_x: .28
+				BoxLayout:
+					size_hint_x: .72
+					Text: 
+						text: "Volume"
+						color: app.color_grey_dark
+					Text: 
+						text: "Price"
+						color: app.color_grey_dark
+					Text: 
+						text: "Owners"
+						color: app.color_grey_dark
+			BoxLayout:
+				ScrollView:
+					do_scroll: [False, True]
+					size_hint_y: None
+					height: self.parent.height
+					GridLayout:
+						id: gl_trending
+						cols: 1
+						size_hint_y: None
+						height: self.minimum_height
+						spacing: dp(8)
+
+<TrendingCard>
+	size_hint_y: None
+	height: dp(48)
+	BackBox:
+		bcolor: app.color_white
+		BoxLayout:
+			padding: dp(8)
+			size_hint_x: None
+			width: self.height
+			CircleAvatar:
+				source: root.cover
+		BoxLayout:
+			orientation: 'vertical'
+			Text: 
+				text: root.title
+				size_hint_y: .6
+				color: app.color_black
+			Text: 
+				text: root.author
+				font_size: app.fonts.size.h6
+				size_hint_y: .4
+				color: app.color_grey_dark
+		Text:
+			text: root.volume
+		BackBox:
+			AnchorLayout:
+				padding: dp(8)
+				size_hint_x: None
+				width: self.height
+				AsyncImage:
+					source: root.price_symbol
+					color: app.color_success
+			Text:
+				text: root.price
+				color: app.color_success
+				font_size: app.fonts.size.h5
+		Text:
+			text: root.owners
+<NFTCard>:
+	size_hint_x: None
+	size_hint_y: None
+	width: Window.width *.18
+	height: Window.height * .34
+	BackBox:
+		radius: [self.height*.1]
+		bcolor: app.color_white
+		padding: dp(12)
+		orientation: 'vertical'
+		spacing: dp(14)
+		BoxLayout:
+			padding: dp(12)
+			canvas.before:
+				Color:
+					rgba: [1,1,1,1]
+				RoundedRectangle:
+					size: self.size[0], self.size[1]
+					pos: self.pos
+					radius: [self.height*.1]
+					source: root.cover
+			AnchorLayout:
+				anchor_y: 'top'
+				BoxLayout:
+					size_hint_y: None
+					height: dp(42)
+					FlatButton:
+						text: icon("icon-heart")
+						color: app.color_white
+						size_hint_x: None
+						width: self.height
+						canvas.before:
+							Color:
+								rgba: [0,0,0, .2]
+							Ellipse:
+								size: self.size[0], self.size[1]
+								pos: self.pos
+					Widget:
+						
+		Text:
+			text: root.title
+			color: app.color_black
+			font_size: app.fonts.size.h2
+			size_hint_y: None
+			height: dp(32)
+		BoxLayout:
+			size_hint_y: None
+			height: dp(42)
+			spacing: dp(12)
+			CircleAvatar:
+				source: root.avatar
+				size_hint_x: None
+				width: self.height
+			Text:
+				text: root.author
+				color: app.color_grey_dark
+				font_size: app.fonts.size.h5
+				size_hint_x: .4
+			BackBox:
+				size_hint_x: .6
+				bcolor: app.color_success_light
+				radius: [self.height*.3]
+				padding: dp(4)
+				AnchorLayout:
+					padding: dp(8)
+					size_hint_x: None
+					width: self.height
+					AsyncImage:
+						source: root.price_symbol
+						color: app.color_success
+				Text:
+					text: root.price
+					color: app.color_success
+					font_size: app.fonts.size.h5
+			
+
+			
+	

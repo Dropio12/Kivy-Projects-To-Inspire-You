@@ -1,0 +1,23 @@
+#: import ShadowBox widgets.shadow.ShadowBox
+#: import BackBox widgets.box.BackBox
+#: import icon kivy.garden.iconfonts.icon
+#: import Text widgets.labels.Text
+#: import FlatButton widgets.buttons.FlatButton
+#: import MiniCalender widgets.calenders.MiniCalender
+
+#: import Home views.home.Home
+
+<MainWindow>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: rgba('#ffffff')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    ScreenManager:
+        id: scrn_mngr
+        Screen:
+            name: 'scrn_home'
+            Home:
+                id: home

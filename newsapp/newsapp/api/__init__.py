@@ -1,0 +1,1 @@
+from .hooks import get_latest

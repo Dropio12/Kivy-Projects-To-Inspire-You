@@ -1,0 +1,100 @@
+#:import SoftBox widgets.gradient.SoftBox
+#: import ShadowBox widgets.shadow.ShadowBox
+#: import BackBox widgets.box.BackBox
+#: import Text widgets.labels.Text
+#: import IconButton widgets.buttons.IconButton
+#: import FlatButton widgets.buttons.FlatButton
+#: import OutlineTextField widgets.textfields.OutlineTextField
+#: import SoftSpinner widgets.spinners.SoftSpinner
+#:import BarChart widgets.barchart.BarChart
+
+#: import icon kivy.garden.iconfonts.icon
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+
+#: import Home views.home.Home
+#:import Stats views.stats.Stats
+#: import History views.history.History
+
+<MainWindow>:
+    orientation: 'vertical'
+    canvas.before:  
+        Color:
+            rgba: rgba('#ffffff')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            ScreenManager:
+                id: scrn_mngr
+                transition: SwapTransition()
+                Screen:
+                    name: 'scrn_home'
+                    Home:
+                        id: home
+                Screen:
+                    name: 'scrn_stats'
+                    Stats:
+                        id: stats
+                Screen:
+                    name: 'scrn_history'
+                    History:
+                        id: history
+            Widget:
+                size_hint_y: None
+                height: dp(24)
+        AnchorLayout:
+            id: wrapper_bottombar
+            anchor_y: 'bottom'
+            padding: dp(12)
+            BackBox:
+                orientation: 'vertical'
+                color: app.colors.white
+                radius: [self.height*.2]
+                padding: dp(1.5)
+                size_hint: [.7, None]
+                height: dp(42)
+                ShadowBox:
+                    spacing: dp(8)
+                    padding: [dp(10), dp(4)]
+                    radius: [self.height*.2]
+                    elevation: 3
+                    bcolor: app.colors.tab
+                    AnchorLayout:
+                        padding: dp(4)
+                        NavToggle:
+                            source: 'assets/icons/ic_grid.png'
+                            state: 'down'
+                            on_state: scrn_mngr.current = 'scrn_home'
+                    AnchorLayout:
+                        padding: dp(4)
+                        NavToggle:
+                            source: 'assets/icons/ic_chart.png'
+                            on_state: scrn_mngr.current = 'scrn_stats'
+                    AnchorLayout:
+                        padding: dp(4)
+                        NavToggle:
+                            source: 'assets/icons/ic_loader.png'
+                            on_state: scrn_mngr.current = 'scrn_history'
+                    AnchorLayout:
+                        padding: dp(4)
+                        NavToggle:
+                            source: 'assets/icons/ic_settings.png'
+
+<NavToggle@ToggleButton>:
+    group: 'tabs'
+    background_normal: ""
+    background_down: ""
+    background_color: [1,1,1, 0]
+    source: ''
+    size_hint_x: None
+    width: self.height
+    opacity: .4 if self.state == 'normal' else 1
+    canvas.before:
+        Color:
+            rgba: [1,1,1,1]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: root.source

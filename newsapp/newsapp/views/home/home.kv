@@ -1,0 +1,78 @@
+<Home>:
+	orientation: 'vertical'
+	BoxLayout:
+		size_hint_y: None
+		height: dp(72)
+		padding: [dp(8), dp(16), dp(8), dp(4)]
+		BoxLayout:
+			orientation: 'vertical'
+			canvas.before:
+				Color:
+					rgba: app.colors.primary
+				RoundedRectangle:
+					size: [(self.size[0]*.1), dp(4)]
+					pos: self.pos
+					radius: [dp(4)]
+			Text:
+				text: root.date
+				font_name: app.fonts.body
+				font_size: app.fonts.size.h6
+				color: app.colors.white
+				size_hint_y: None
+				height: dp(16)
+			Text:
+				text: "Favourites"
+				font_name: app.fonts.subheading
+				font_size: app.fonts.size.h3
+				color: app.colors.white
+				size_hint_y: None
+				height: dp(24)
+	BoxLayout:
+		size_hint_y: .4
+		ScrollView:
+			size_hint: [None, None]
+			size: self.parent.size
+			bar_active_color: [0,0,0,0]
+			bar_inactive_color: [0,0,0,0]
+			do_scroll: [True, False]
+			GridLayout:
+				id: gl_fav
+				rows: 1
+				size_hint: [None, None]
+				size: self.minimum_size
+				spacing: dp(12)
+				padding: dp(12)
+	BoxLayout:
+		size_hint_y: .6
+		orientation: "vertical"
+		BoxLayout:
+			size_hint_y: None
+			height: dp(42)
+			padding: [dp(8), dp(16), dp(8), dp(4)]
+			BoxLayout:
+				canvas.before:
+					Color:
+						rgba: app.colors.primary
+					RoundedRectangle:
+						size: [(self.size[0]*.1), dp(4)]
+						pos: [self.pos[0], self.pos[1]-dp(4)]
+						radius: [dp(2)]
+				Text:
+					text: "Latest news"
+					font_name: app.fonts.subheading
+					font_size: app.fonts.size.h3
+					color: app.colors.white
+		BoxLayout:
+			ScrollView:
+				size_hint_y: None
+				height: self.parent.height
+				bar_active_color: [0,0,0,0]
+				bar_inactive_color: [0,0,0,0]
+				do_scroll: [False, True]
+				GridLayout:
+					id: gl_all
+					cols: 1
+					size_hint_y: None
+					height: self.minimum_height
+					spacing: dp(12)
+					padding: dp(12)

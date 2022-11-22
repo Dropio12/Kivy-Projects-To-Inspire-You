@@ -1,0 +1,60 @@
+
+#: import Home views.home.Home
+#: import Fav views.fav.Fav
+#: import NewsList views.newslist.NewsList
+#: import Text widgets.labels.Text
+#: import FlatButton widgets.buttons.FlatButton
+#: import BackBox widgets.box.BackBox
+#: import icon kivy.garden.iconfonts.icon
+
+<MainWindow>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: app.colors.secondary
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    ScreenManager:
+        id: scrn_mngr
+        Screen:
+            name: 'scrn_home'
+            Home:
+                id: home
+        Screen:
+            name: 'scrn_list'
+            NewsList:
+                id: news_list
+        Screen:
+            name: 'scrn_fav'
+            Fav:
+                id: fav
+    BoxLayout:
+        spacing: dp(16)
+        padding: [dp(12), dp(4)]
+        size_hint_y: None
+        height: dp(42)
+        Widget:
+        NavToggle:
+            text: icon("icon-home")
+            state: "down"
+            on_release: scrn_mngr.current = "scrn_home"
+        NavToggle:
+            text: icon("icon-list")
+            on_release: scrn_mngr.current = "scrn_list"
+        NavToggle:
+            text: icon("icon-heart")
+            on_release: scrn_mngr.current = "scrn_fav"
+        Widget:
+
+<NavToggle@ToggleButton>:
+    size_hint_x: None
+    width: self.height
+    background_normal: ""
+    background_down: ""
+    background_color: [0,0,0,0]
+    markup: True
+    group: "nav-tabs"
+    font_name: app.fonts.subheading
+    font_size: app.fonts.size.h1
+    color: app.colors.primary if self.state == "down" else app.colors.white

@@ -1,0 +1,207 @@
+
+
+<Stats>:
+    orientation: 'vertical'
+    spacing: dp(8)
+    BoxLayout:
+        size_hint_y: None
+        height: dp(42)
+        Text:   
+            text: 'Analytics'
+            font_name: app.fonts.heading
+            font_size: app.fonts.size.h4
+            color: app.colors.secondary
+            halign: 'center'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: .3
+            id: wrapper_overview
+            orientation: 'vertical'
+            padding: [dp(12), dp(4)]
+            BoxLayout:
+                size_hint_y: None
+                height: dp(24)
+                Text:   
+                    text: 'Overview'
+                    font_name: app.fonts.subheading
+                    font_size: app.fonts.size.h5
+                    color: app.colors.primary
+                SoftSpinner:
+                    id: sp_overview
+                    text: 'Yearly'
+                    values: ["Yearly", "Monthly", "Daily"]
+                    size_hint_x: .4
+                    radius: [self.height/2]
+            BoxLayout:
+                spacing: dp(20)
+                padding: [dp(1), dp(12), dp(1), dp(8)]
+                AnchorLayout:
+                    SoftBox:
+                        vertical: True
+                        radius: [self.height*.2]
+                        bcolor: [app.colors.tertiary, app.colors.primary]
+                        padding: dp(8)
+                        orientation: 'vertical'
+                        BoxLayout:
+                            size_hint_y: None
+                            height: dp(42)
+                            AnchorLayout:
+                                size_hint_x: None
+                                width: self.height
+                                anchor_x: 'left'
+                                BackBox:
+                                    padding: dp(1)
+                                    bcolor: [1,1,1, .6]
+                                    radius: [self.height*.3]
+                                    size_hint: [None, None]
+                                    size: [dp(24), dp(24)]
+                                    IconButton:
+                                        source: 'assets/icons/ic_income.png'
+                            BoxLayout:
+                                id: wrapper_trend
+                        GridLayout:
+                            cols: 1
+                            Text: 
+                                text: "$12, 450.02"
+                                color: app.colors.white
+                                font_name: app.fonts.heading
+                                font_size: app.fonts.size.h3
+                                size_hint_y: None
+                                height: dp(24)
+                            Text: 
+                                text: "Income"
+                                color: app.colors.white
+                                font_name: app.fonts.subheading
+                                font_size: app.fonts.size.h5
+                                size_hint_y: None
+                                height: dp(16)
+                                opacity: .7
+                AnchorLayout:
+                    SoftBox:
+                        vertical: True
+                        radius: [self.height*.2]
+                        bcolor: [app.colors.primary, app.colors.tertiary]
+                        padding: dp(8)
+                        orientation: 'vertical'
+                        BoxLayout:
+                            size_hint_y: None
+                            height: dp(42)
+                            AnchorLayout:
+                                size_hint_x: None
+                                width: self.height
+                                anchor_x: 'left'
+                                BackBox:
+                                    padding: dp(1)
+                                    bcolor: [1,1,1, .6]
+                                    radius: [self.height*.3]
+                                    size_hint: [None, None]
+                                    size: [dp(24), dp(24)]
+                                    IconButton:
+                                        source: 'assets/icons/ic_expense.png'
+                            BoxLayout:
+                                id: wrapper_trend
+                        GridLayout:
+                            cols: 1
+                            Text: 
+                                text: "$4,827.64"
+                                color: app.colors.white
+                                font_name: app.fonts.heading
+                                font_size: app.fonts.size.h3
+                                size_hint_y: None
+                                height: dp(24)
+                            Text: 
+                                text: "Expenses"
+                                color: app.colors.white
+                                font_name: app.fonts.subheading
+                                font_size: app.fonts.size.h5
+                                size_hint_y: None
+                                height: dp(16)
+                                opacity: .7
+
+        BoxLayout:
+            size_hint_y: .4
+            id: wrapper_graph
+            orientation: 'vertical'
+            padding: dp(12)
+            BoxLayout:
+                size_hint_y: None
+                height: dp(36)
+                Text:   
+                    text: 'Income Spending'
+                    font_name: app.fonts.heading
+                    font_size: app.fonts.size.h5
+                    color: app.colors.primary
+                    size_hint_x: .6
+                BoxLayout:
+                    size_hint_x: .4
+                    spacing: dp(4)
+                    orientation: 'vertical'
+                    BoxLayout:
+                        spacing: dp(4)
+                        Text:   
+                            text: 'Income'
+                            font_name: app.fonts.body
+                            font_size: app.fonts.size.h6
+                            color: app.colors.secondary
+                            halign: 'right'
+                        AnchorLayout:
+                            size_hint_x: None
+                            width: dp(10)
+                            BackBox:
+                                size_hint: [1, None]
+                                height: dp(10)
+                                bcolor: app.colors.primary
+                                radius: [self.height/2]
+                    BoxLayout:
+                        spacing: dp(4)
+                        Text:   
+                            text: 'Expenses'
+                            font_name: app.fonts.body
+                            font_size: app.fonts.size.h6
+                            color: app.colors.secondary
+                            halign: 'right'
+                        AnchorLayout:
+                            size_hint_x: None
+                            width: dp(10)
+                            BackBox:
+                                size_hint: [1, None]
+                                height: dp(10)
+                                bcolor: app.colors.tertiary
+                                radius: [self.height/2]
+            BoxLayout:
+                BarChart:
+                    id: chart
+        BoxLayout:
+            id: wrapper_transactions
+            size_hint_y: .3
+            orientation: 'vertical'
+            padding: dp(12)
+            BoxLayout:
+                size_hint_y: None
+                height: dp(24)
+                Text:   
+                    text: 'Most Spent Month'
+                    font_name: app.fonts.heading
+                    font_size: app.fonts.size.h5
+                    color: app.colors.primary
+                    size_hint_x: .6
+                Text:   
+                    text: 'December'
+                    font_name: app.fonts.body
+                    font_size: app.fonts.size.h5
+                    color: app.colors.primary
+                    size_hint_x: .4
+                    halign: 'right'
+                    opacity: .8
+            BoxLayout:
+                ScrollView:
+                    do_scroll: [False, True]
+                    size_hint_y: None
+                    height: self.parent.height
+                    GridLayout:
+                        id: gl_month_spend
+                        cols: 1
+                        spacing: dp(12)
+                        size_hint_y: None
+                        height: self.minimum_height

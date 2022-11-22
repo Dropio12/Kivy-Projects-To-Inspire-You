@@ -1,0 +1,39 @@
+
+from kivy.app import App
+from kivy.utils import QueryDict, rgba
+from kivy.metrics import dp, sp
+
+from .view import MainWindow
+
+class MainApp(App):
+    colors = QueryDict()
+    colors.primary = rgba("#83BAED")
+    colors.primary_light = rgba("#83BAED28") #rgba(131, 186, 237, 0.12)
+    colors.secondary = rgba("#1E1843")
+    colors.success = rgba("#1FC98E")
+    colors.warning = rgba("#F2C94C")
+    colors.danger = rgba("#D03866")
+    colors.tertiary = rgba("#83F3FA")
+    colors.tertiary_light = rgba("#F3F7FF")
+    colors.grey_dark = rgba("#c4c4c4")
+    colors.grey_light = rgba("#f5f5f5")
+    colors.black = rgba("#a1a1a1")
+    colors.white = rgba("#ffffff")
+    colors.tab = rgba("#F1F2FF")
+
+    fonts = QueryDict()
+    fonts.size = QueryDict()
+    fonts.size.h1 = dp(24)
+    fonts.size.h2 = dp(22)
+    fonts.size.h3 = dp(18)
+    fonts.size.h4 = dp(16)
+    fonts.size.h5 = dp(14)
+    fonts.size.h6 = dp(12)
+    fonts.size.extra = dp(36)
+
+    fonts.heading = 'assets/fonts/Inter/Inter-Bold.otf'
+    fonts.subheading = 'assets/fonts/Inter/Inter-Regular.otf'
+    fonts.body = 'assets/fonts/Inter/Inter-ExtraLight.otf'
+
+    def build(self):
+        return MainWindow()

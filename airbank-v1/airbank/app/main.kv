@@ -1,0 +1,85 @@
+#: import BackBox widgets.box.BackBox
+#: import FlatButton widgets.buttons.FlatButton
+#: import PremiumCard widgets.cards.PremiumCard
+#: import Text widgets.labels.Text
+#: import EmptyField widgets.textfields.EmptyField
+#: import CircleAvatar widgets.images.CircleAvatar
+#: import ArcProgress widgets.arcprogress.ArcProgress
+
+#: import icon kivy.garden.iconfonts.icon
+
+#: import Home views.home.Home
+
+<MainWindow>:
+    canvas.before:
+        Color:
+            rgba: app.colors.primary
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        id: sidenav
+        cols: 1
+        size_hint_x: None
+        width: dp(82)
+        Widget:
+            size_hint_y: None
+            height: dp(54)
+        AnchorLayout:
+            padding: dp(8)
+            size_hint_y: None
+            height: self.width
+            Widget:
+                canvas.before:
+                    Color:
+                        rgba: [1,1,1,1]
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: "assets/icons/ic_logo.png"
+        Widget:
+            size_hint_y: None
+            height: dp(8)
+        GridLayout:
+            cols: 1
+            id: tabs
+            NavTabs:
+                text: icon("icon-grid")
+                state: "down"
+            NavTabs:
+                text: icon("icon-users")
+            NavTabs:
+                text: icon("icon-file")
+            NavTabs:
+                text: icon("icon-settings")
+        BoxLayout:
+            size_hint_y: None
+            height: dp(54)
+            FlatButton:
+                text: icon("icon-log-out")
+                color: app.colors.white
+                font_size: app.fonts.size.h1
+    ScreenManager:
+        id: scrn_mngr
+        Screen:
+            name: 'scrn_home'
+            Home:
+                id: home
+
+<NavTabs@ToggleButton>:
+    background_normal: ""
+    background_down: ""
+    background_color: [0,0,0,0]
+    color: app.colors.white if self.state == "down" else [1,1,1, .3]
+    markup: True
+    group: "nav-tabs"
+    size_hint_y: None
+    height: dp(42)
+    font_size: app.fonts.size.h1
+    canvas:
+        Color:
+            rgba: [1,1,1,1] if self.state == "down" else [0,0,0,0]
+        Rectangle:
+            size: dp(6), self.size[1]
+            pos: self.pos
+    
